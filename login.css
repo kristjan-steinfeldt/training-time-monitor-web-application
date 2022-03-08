@@ -33,3 +33,24 @@
     color: #0062cc;
     background-color: #fff;
 }
+
+button:hover{
+    color: #0062cc;
+
+}
+
+/* .error {
+
+    background: #F2DEDE;
+ 
+    color: #0c0101;
+ 
+    padding: 10px;
+ 
+    width: 95%;
+ 
+    border-radius: 5px;
+ 
+    margin: 20px auto;
+ 
+ } */
