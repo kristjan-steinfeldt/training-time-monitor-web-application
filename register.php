@@ -1,30 +1,25 @@
 <?php
 include_once 'config.php';
-if (isset($_POST)){
+if (isset($_POST["signup"])){
     $email= $_POST['email'];
     $password= $_POST['password'];
+    $hashed_pass=password_hash($password, PASSWORD_DEFAULT);
+    $sql= mysqli_query($conn,"INSERT INTO KASUTAJAD (password, email)  VALUES ($hashed_pass, '$email') ");
 
-    $sql= mysqli_query($conn,"SELECT password, email FROM KASUTAJAD WHERE email='" . $_POST['email'] . "'");
 
-
-
-    $row = mysqli_fetch_array($sql);
-    $hashed_pass= $row["password"];
-    if (password_verify($password, $hashed_pass)): {
-        echo "success";
+    if (mysqli_query($conn, $sql)): {
+        echo "user created";
     }else: {
-        echo "error ";
+        echo "error user not created";
     }
     endif;
 }
-
-
 
 ?>
 <!DOCTYPE html>
 <html>
 <body>
-<form action="login.php" method="post">
+<form action="signup.php" method="post">
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
@@ -44,4 +39,3 @@ if (isset($_POST)){
 </form>
 </body>
 </html>
-
